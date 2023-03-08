@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jokenpo/screens/jogo_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'JokenPo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(),
-      home: Container(),
+      home: JogoScreen(),
     );
   }
 }
