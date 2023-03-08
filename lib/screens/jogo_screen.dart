@@ -15,7 +15,17 @@ class _JogoScreenState extends State<JogoScreen> {
         title: Text("JokenPo"),
       ),
       body: Column(
-        children: [],
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(top: 32, bottom: 16),
+            child: Text(
+              "Escolha do App",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            ),
+          )
+        ],
       ),
     );
   }
