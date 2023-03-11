@@ -8,6 +8,10 @@ class JogoScreen extends StatefulWidget {
 }
 
 class _JogoScreenState extends State<JogoScreen> {
+  var _imagemApp = AssetImage("images/padrao.png");
+
+  void _opcaoSelecionada(String escolhaUsuario) {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +29,7 @@ class _JogoScreenState extends State<JogoScreen> {
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
           ),
-          Image.asset("images/pedra.png"),
+          Image(image: this._imagemApp),
           Padding(
             padding: EdgeInsets.only(top: 32, bottom: 16),
             child: Text(
@@ -39,17 +43,26 @@ class _JogoScreenState extends State<JogoScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image.asset(
-                  "images/papel.png",
-                  height: 110,
+                GestureDetector(
+                  onTap: () => _opcaoSelecionada("papel"),
+                  child: Image.asset(
+                    "images/papel.png",
+                    height: 110,
+                  ),
                 ),
-                Image.asset(
-                  "images/pedra.png",
-                  height: 110,
+                GestureDetector(
+                  onTap: () => _opcaoSelecionada("pedra"),
+                  child: Image.asset(
+                    "images/pedra.png",
+                    height: 110,
+                  ),
                 ),
-                Image.asset(
-                  "images/tesoura.png",
-                  height: 110,
+                GestureDetector(
+                  onTap: () => _opcaoSelecionada("tesou ra"),
+                  child: Image.asset(
+                    "images/tesoura.png",
+                    height: 110,
+                  ),
                 ),
               ],
             ),
