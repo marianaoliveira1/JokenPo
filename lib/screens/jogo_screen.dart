@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class JogoScreen extends StatefulWidget {
@@ -9,8 +11,53 @@ class JogoScreen extends StatefulWidget {
 
 class _JogoScreenState extends State<JogoScreen> {
   var _imagemApp = AssetImage("images/padrao.png");
+  var _mensagem = "Escolha uma opção abaixo";
 
-  void _opcaoSelecionada(String escolhaUsuario) {}
+  void _opcaoSelecionada(String escolhaUsuario) {
+    var opcoes = ["pedra", "papel", "tesoura"];
+    var numero = Random().nextInt(3);
+    var escolhadoApp = opcoes[numero];
+
+    switch (escolhadoApp) {
+      case "pedra":
+        setState(() {
+          this._imagemApp = AssetImage(
+            "images/pedra.png",
+          );
+        });
+        break;
+      case "papel":
+        setState(() {
+          this._imagemApp = AssetImage(
+            "images/papel.png",
+          );
+        });
+        break;
+      case "tesoura":
+        setState(() {
+          this._imagemApp = AssetImage(
+            "images/tesoura.png",
+          );
+        });
+        break;
+    }
+
+    if ((escolhaUsuario == "pedra" && escolhadoApp == "tesousa") ||
+        (escolhaUsuario == "tesoura" && escolhadoApp == "papel") ||
+        (escolhaUsuario == "papel" && escolhadoApp == "pedra")) {
+      setState(() {
+        this._mensagem = "Parabéns meu patrão, você ganhou";
+      });
+    } else if ((escolhadoApp == "pedra" && escolhaUsuario == "tesousa") ||
+        (escolhadoApp == "tesoura" && escolhaUsuario == "papel") ||
+        (escolhadoApp == "papel" && escolhaUsuario == "pedra")) {
+      this._mensagem = "Vish meu patrão, você perdeu";
+    } else {
+      setState(() {
+        this._mensagem = "Deu empate chefia";
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +80,7 @@ class _JogoScreenState extends State<JogoScreen> {
           Padding(
             padding: EdgeInsets.only(top: 32, bottom: 16),
             child: Text(
-              "Escolha uma opção abaixo",
+              this._mensagem,
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
@@ -44,16 +91,16 @@ class _JogoScreenState extends State<JogoScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  onTap: () => _opcaoSelecionada("papel"),
+                  onTap: () => _opcaoSelecionada("pedra"),
                   child: Image.asset(
-                    "images/papel.png",
+                    "images/pedra.png",
                     height: 110,
                   ),
                 ),
                 GestureDetector(
-                  onTap: () => _opcaoSelecionada("pedra"),
+                  onTap: () => _opcaoSelecionada("papel"),
                   child: Image.asset(
-                    "images/pedra.png",
+                    "images/papel.png",
                     height: 110,
                   ),
                 ),
